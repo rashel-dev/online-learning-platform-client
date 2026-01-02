@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useParams, Link, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 
 export default function CourseDetails() {
     const { id } = useParams();
@@ -142,7 +142,7 @@ export default function CourseDetails() {
 
     return (
         <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
-            <ToastContainer />
+
             <div className="max-w-5xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
                 <div>
                     <div className="bg-gray-100 dark:bg-gray-900 flex items-center justify-center p-6">

@@ -22,16 +22,16 @@ const AuthProvider = ({ children }) => {
 
     const createUser = (email, password) => {
         setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password);
+        return createUserWithEmailAndPassword(auth, email, password).finally(() => setLoading(false));
     };
     const signInWithGoogle = () => {
         setLoading(true);
-        return signInWithPopup(auth, googleProvider);
+        return signInWithPopup(auth, googleProvider).finally(() => setLoading(false));
     };
 
     const logInUser = (email, password) => {
         setLoading(true);
-        return signInWithEmailAndPassword(auth, email, password);
+        return signInWithEmailAndPassword(auth, email, password).finally(() => setLoading(false));
     };
 
     const updateUser = (updatedData) => {
@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
 
     const resetPassword = (email) => {
         setLoading(true);
-        return sendPasswordResetEmail(auth, email);
+        return sendPasswordResetEmail(auth, email).finally(() => setLoading(false));
     };
 
     useEffect(() => {
@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
         return () => {
             unsubscribe();
         };
-    });
+    }, []);
 
     const authData = {
         user,

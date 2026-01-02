@@ -1,7 +1,6 @@
 import React, { use, useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
 
 const Login = () => {
@@ -55,7 +54,7 @@ const Login = () => {
 
     return (
         <div>
-            <ToastContainer />
+
             <div className="flex justify-center min-h-screen items-center">
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5">
                     <h2 className="font-semibold text-2xl text-center">Login your account</h2>
@@ -75,7 +74,7 @@ const Login = () => {
 
                             {error && <p className="text-red-500">{error}</p>}
 
-                            <button type="submit" className="btn btn-neutral mt-4">
+                            <button type="submit" className="btn btn-primary mt-4 text-white font-bold">
                                 Login
                             </button>
                             <p className="font-semibold text-center pt-5">

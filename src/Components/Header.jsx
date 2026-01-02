@@ -2,7 +2,7 @@ import { Menu, X, User, LogIn } from "lucide-react";
 import React, { use, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { CiLogout } from "react-icons/ci";
 import Logo from "./ui/Logo";
 import { FaBook, FaHome, FaUser } from "react-icons/fa";
@@ -49,7 +49,7 @@ const Header = () => {
 
     return (
         <header className="sticky top-0 z-50 bg-neutral dark:bg-gray-900/95 backdrop-blur-md shadow-md border-b border-gray-100 dark:border-gray-800 ">
-            <ToastContainer />
+
             <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
                     {/* Logo Section */}
@@ -65,7 +65,7 @@ const Header = () => {
                         <div className="hidden lg:flex items-center space-x-3">
                             <button
                                 onClick={handleLogOut}
-                                className="flex items-center space-x-2 px-5 py-2.5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-all duration-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer"
+                                className="flex btn btn-outline btn-error items-center space-x-2 px-5 py-2.5 font-bold transition-all duration-300 rounded-lg cursor-pointer"
                             >
                                 <CiLogout className="w-4 h-4" />
                                 <span>Logout</span>
@@ -74,13 +74,13 @@ const Header = () => {
                     ) : (
                         <div className="hidden lg:flex items-center space-x-3">
                             <Link to="/login">
-                                <button className="flex items-center space-x-2 px-5 py-2.5 text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition-all duration-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer">
+                                <button className="flex btn btn-outline btn-primary items-center px-5 py-2.5 font-bold transition-all duration-300 rounded-lg cursor-pointer">
                                     <LogIn className="w-4 h-4" />
                                     <span>Login</span>
                                 </button>
                             </Link>
                             <Link to="/register">
-                                <button className="flex items-center space-x-2 px-6 py-2.5 bg-linear-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer">
+                                <button className="flex btn btn-primary items-center px-6 py-2.5 text-white rounded-lg font-bold shadow-lg hover:shadow-primary/20 transition-all duration-300 cursor-pointer">
                                     <User className="w-4 h-4" />
                                     <span>Register</span>
                                 </button>
@@ -105,7 +105,7 @@ const Header = () => {
                         <div className="pt-4 space-y-4 border-t border-gray-100 dark:border-gray-800 mt-4">
                             <button
                                 onClick={handleLogOut}
-                                className="w-full flex items-center justify-center space-x-2 px-4 py-3 text-gray-700 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 font-medium cursor-pointer mb-2"
+                                className="w-full btn btn-outline btn-error flex items-center justify-center space-x-2 px-4 py-3 rounded-lg font-bold cursor-pointer mb-2"
                             >
                                 <CiLogout className="w-4 h-4" />
                                 <span>Logout</span>
@@ -114,13 +114,13 @@ const Header = () => {
                     ) : (
                         <div className="pt-4 space-y-4 border-t border-gray-100 dark:border-gray-800 mt-4">
                             <Link to="/login">
-                                <button className="w-full flex items-center justify-center space-x-2 px-4 py-3 text-gray-700 dark:text-gray-200 border-2 border-gray-200 dark:border-gray-700 rounded-lg hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-200 font-medium cursor-pointer mb-2">
+                                <button className="w-full btn btn-outline btn-primary flex items-center justify-center space-x-2 px-4 py-3 rounded-lg font-bold cursor-pointer mb-2">
                                     <LogIn className="w-4 h-4" />
                                     <span>Login</span>
                                 </button>
                             </Link>
                             <Link to="/register">
-                                <button className="w-full flex items-center justify-center space-x-2 px-4 py-3 bg-linear-to-r from-blue-600 to-purple-600 text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-200 font-medium cursor-pointer">
+                                <button className="w-full btn btn-primary flex items-center justify-center space-x-2 px-4 py-3 text-white rounded-lg shadow-lg font-bold cursor-pointer">
                                     <User className="w-4 h-4" />
                                     <span>Register</span>
                                 </button>

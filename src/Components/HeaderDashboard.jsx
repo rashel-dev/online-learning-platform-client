@@ -2,7 +2,7 @@ import { Menu, X } from "lucide-react";
 import React, { use, useState } from "react";
 import {  NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { CiLogout } from "react-icons/ci";
 import Logo from "./ui/Logo";
 
@@ -48,7 +48,7 @@ const HeaderDashboard = () => {
 
     return (
         <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md border-b border-gray-100 dark:border-gray-800">
-            <ToastContainer />
+
             <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">
                     {/* Logo Section */}

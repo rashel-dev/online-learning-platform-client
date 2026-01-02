@@ -1,7 +1,7 @@
 import React, { use, useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 import Header from "../Components/Header";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
 
 const Register = () => {
@@ -89,7 +89,7 @@ const Register = () => {
 
     return (
         <div>
-            <ToastContainer />
+
             <div className="flex justify-center lg:min-h-screen items-center mt-4">
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl py-5">
                     <h2 className="font-semibold text-2xl text-center">Register your account</h2>
@@ -115,7 +115,7 @@ const Register = () => {
 
                             {passwordError && <p className="text-xs text-error">{passwordError} </p>}
 
-                            <button type="submit" className="btn btn-neutral mt-4">
+                            <button type="submit" className="btn btn-primary mt-4 text-white font-bold">
                                 Register
                             </button>
                             <p className="font-semibold text-center pt-5">
