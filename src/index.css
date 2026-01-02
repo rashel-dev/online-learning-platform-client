@@ -1,12 +1,30 @@
 @import "tailwindcss";
-
 @plugin "daisyui" {
     themes: light --default, dark --prefersdark;
 }
-
-
 @variant dark (&:where(.dark, .dark *, [data-theme=dark], [data-theme=dark] *));
 
+@plugin "daisyui/theme" {
+    name: "light";
+    default: true;
+    --color-primary: #1f7a63;
+    --color-secondary: #3bdb75;
+    --color-accent: #caf9f1;
+    --color-background: #e8faf7;
+}
+
+@plugin "daisyui/theme" {
+    name: "dark";
+    --color-primary: #2ab894;
+    --color-secondary: #3bdb75;
+    --color-accent: #caf9f1;
+    --color-background: #e8faf7;
+}
+
+a.active {
+    color: var(--color-primary);
+    font-weight: bold;
+}
 
 .text-primary-gradient {
     background: linear-gradient(to right, #2563eb, #9333ea, #db2777);
@@ -14,21 +32,4 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
-}
-
-.btn-primary {
-    background-image: linear-gradient(to bottom right, #632ee3, #9f62f2) !important;
-    color: white !important;
-    border: none !important;
-    transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-    background-image: linear-gradient(to bottom right, #7642e9, #b27af5) !important;
-    transform: translateY(-1px);
-}
-
-.btn-primary:active {
-    background-image: linear-gradient(to bottom right, #5121c7, #8c4de4) !important;
-    transform: scale(0.97);
 }

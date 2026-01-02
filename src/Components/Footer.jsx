@@ -1,7 +1,6 @@
 import React from "react";
 import { FaFacebook,FaGithub,FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
-import logoImg from "../assets/patshala360-logo.png";
-
+import Logo from "./ui/Logo";
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -60,8 +59,7 @@ export default function Footer() {
                     {/* Brand Section */}
                     <div className="lg:col-span-2">
                         <div className="flex items-center mb-4">
-                            <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-white font-bold text-xl"><img src={logoImg} alt="" /></div>
-                            <span className="ml-3 text-2xl font-bold text-white">Pathshala360</span>
+                            <Logo/>
                         </div>
                         <p className="text-gray-400 mb-6 leading-relaxed">
                             Empowering learners worldwide with quality education. Join millions of students learning new skills and advancing their careers with our expert-led courses.

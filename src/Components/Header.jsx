@@ -1,10 +1,10 @@
 import { BookOpen, Menu, X, User, LogIn } from "lucide-react";
 import React, { use, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
-import logoImg from "../assets/patshala360-logo.png";
 import { AuthContext } from "../Context/AuthContext";
 import { toast, ToastContainer } from "react-toastify";
 import { CiLogout } from "react-icons/ci";
+import Logo from "./ui/Logo";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -53,8 +53,7 @@ const Header = () => {
                 <div className="flex justify-between items-center h-20">
                     {/* Logo Section */}
                     <div onClick={() => navigate("/")} className="flex items-center space-x-2 group cursor-pointer">
-                        <img src={logoImg} alt="patshala360 logo" className="w-16 h-16 sm:w-20 sm:h-20 object-contain dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.35)] " />
-                        <span className="text-2xl lg:text-3xl font-bold bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">PathShala360</span>
+                        <Logo></Logo>
                     </div>
 
                     {/* Desktop Navigation */}
