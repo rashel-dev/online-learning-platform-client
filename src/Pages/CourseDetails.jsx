@@ -75,7 +75,7 @@ export default function CourseDetails() {
 
     useEffect(() => {
         if (course?.title) {
-            document.title = `${course.title} - PathShala360`;
+            document.title = `${course.title} - PathShalaBD`;
         }
     }, [course]);
 

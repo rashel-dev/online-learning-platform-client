@@ -12,7 +12,7 @@ const Register = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        document.title = "Pathshala360 | Register";
+        document.title = "PathshalaBD | Register";
     }, []);
 
     const handleRegister = (e) => {

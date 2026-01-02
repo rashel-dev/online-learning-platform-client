@@ -7,7 +7,7 @@ import ThemeToggle from "../Components/ThemeToggle";
 
 const Home = () => {
     useEffect(() => {
-        document.title = "PathShala360 - Home";
+        document.title = "PathShalaBD - Home";
     }, []);
 
     return (

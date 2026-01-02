@@ -13,7 +13,7 @@ const Login = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        document.title = "Pathshala360 | Login";
+        document.title = "PathshalaBD | Login";
     }, []);
 
     const handleLogin = (e) => {

@@ -1,10 +1,11 @@
-import { BookOpen, Menu, X, User, LogIn } from "lucide-react";
+import { Menu, X, User, LogIn } from "lucide-react";
 import React, { use, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import { toast, ToastContainer } from "react-toastify";
 import { CiLogout } from "react-icons/ci";
 import Logo from "./ui/Logo";
+import { FaBook, FaHome, FaUser } from "react-icons/fa";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -29,25 +30,25 @@ const Header = () => {
     const navLinks = (
         <>
             <li>
-                <NavLink to="/" className={({ isActive }) => (isActive ? "text-blue-600 font-bold border-b-2 border-blue-600 pb-1" : "hover:text-primary")}>
-                    Home
+                <NavLink to="/" className="flex items-center gap-1">
+                   <FaHome></FaHome> Home
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/courses" className={({ isActive }) => (isActive ? "text-blue-600 font-bold border-b-2 border-blue-600 pb-1" : "hover:text-primary")}>
-                    Courses
+                <NavLink to="/courses" className="flex items-center gap-1">
+                   <FaBook></FaBook> Courses
                 </NavLink>
             </li>
             <li>
-                <NavLink to="/dashboard" className={({ isActive }) => (isActive ? "text-blue-600 font-bold border-b-2 border-blue-600 pb-1" : "hover:text-primary")}>
-                    Dashboard
+                <NavLink to="/dashboard" className="flex items-center gap-1">
+                   <FaUser></FaUser> Dashboard
                 </NavLink>
             </li>
         </>
     );
 
     return (
-        <header className="sticky top-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-md border-b border-gray-100 dark:border-gray-800">
+        <header className="sticky top-0 z-50 bg-neutral dark:bg-gray-900/95 backdrop-blur-md shadow-md border-b border-gray-100 dark:border-gray-800 ">
             <ToastContainer />
             <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-20">

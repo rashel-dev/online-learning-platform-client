@@ -22,7 +22,7 @@ const UpdateCourse = () => {
     // Fetch course data and prefill form
     useEffect(() => {
         if (formData.title) {
-            document.title = `Update: ${formData.title} - PathShala360`;
+            document.title = `Update: ${formData.title} - PathShalaBD`;
         }
     }, [formData.title]);
 

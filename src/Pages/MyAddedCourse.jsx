@@ -14,7 +14,7 @@ const MyCourses = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        document.title = "My Added Courses - PathShala360";
+        document.title = "My Added Courses - PathShalaBD";
     }, []);
 
     useEffect(() => {

@@ -22,7 +22,7 @@ const AddCourse = () => {
 
     // Auto-fill instructor details from Firebase when user is available
     useEffect(() => {
-        document.title = "Add New Course - PathShala360";
+        document.title = "Add New Course - PathShalaBD";
     }, []);
 
     useEffect(() => {

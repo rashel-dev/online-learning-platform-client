@@ -4,6 +4,7 @@ import {  NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import { toast, ToastContainer } from "react-toastify";
 import { CiLogout } from "react-icons/ci";
+import Logo from "./ui/Logo";
 
 const HeaderDashboard = () => {
     const navigate = useNavigate();
@@ -52,8 +53,7 @@ const HeaderDashboard = () => {
                 <div className="flex justify-between items-center h-20">
                     {/* Logo Section */}
                     <div onClick={() => navigate("/")} className="flex items-center space-x-2 group cursor-pointer">
-                        <img src="logo.png" alt="PatshalaBD logo" className="w-20 h-20 object-contain" />
-                        <span className="text-2xl lg:text-3xl font-bold bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent dark:bg-clip-text dark:text-transparent">PathShalaBD</span>
+                        <Logo/>
                     </div>
 
                     {/* Desktop Navigation */}

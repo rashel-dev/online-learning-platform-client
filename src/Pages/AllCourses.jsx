@@ -10,7 +10,7 @@ const AllCourses = () => {
     const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
-        document.title = "PathShala360 = All Courses";
+        document.title = "PathShalaBD = All Courses";
     }, []);
 
     useEffect(() => {
