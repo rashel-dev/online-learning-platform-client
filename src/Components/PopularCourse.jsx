@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line
 import { motion } from "framer-motion";
 import { Link } from "react-router";
+import { Users, Star, ArrowRight, BookOpen } from "lucide-react";
+import Spinner from "./Spinner";
 
 const PopularCourse = () => {
     const [courses, setCourses] = useState([]);
@@ -32,115 +34,131 @@ const PopularCourse = () => {
 
     const containerVariants = {
         hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+        visible: { opacity: 1, transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
     };
 
     const cardVariants = {
-        hidden: { opacity: 0, y: 50, scale: 0.98 },
-        visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45 } },
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
     };
 
-    if (loading) {
-        return (
-            <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900">
-                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto" />
-                    <p className="mt-4 text-gray-600 dark:text-gray-300">Loading popular courses...</p>
-                </motion.div>
-            </div>
-        );
-    }
-
-    if (error) {
-        return (
-            <div className="flex items-center justify-center min-h-screen p-4 bg-white dark:bg-gray-900">
-                <motion.div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6 max-w-md">
-                    <h2 className="text-lg font-semibold text-red-900 dark:text-red-300 mb-2">Error Loading Courses</h2>
-                    <p className="text-red-700 dark:text-red-400 mb-4">{error}</p>
-                    <button onClick={fetchPopularCourses} className="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700">
-                        Try Again
-                    </button>
-                </motion.div>
-            </div>
-        );
+    if(loading){
+        return <Spinner></Spinner>
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
-            <div className="max-w-7xl mx-auto px-4 py-12">
-                <motion.div className="mb-12 text-center" initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-                    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 mb-4">Popular Courses</h1>
-                    <p className="text-lg text-gray-600 dark:text-gray-300">Explore all of our popular courses</p>
+        <section className="py-20 bg-gray-100 dark:bg-gray-900">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Header */}
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                    <motion.div 
+                        initial={{ opacity: 0, x: -20 }} 
+                        whileInView={{ opacity: 1, x: 0 }} 
+                        viewport={{ once: true }} 
+                        className="max-w-2xl"
+                    >
+                        <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase bg-primary/10 text-primary mb-4">
+                            Trending Now
+                        </span>
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white leading-tight">
+                            Our Most <span className="text-primary">Popular</span> Courses
+                        </h2>
+                        <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+                            Join thousands of students learning from the best instructors in the industry.
+                        </p>
+                    </motion.div>
+                    
                     <motion.div
-                        className="w-24 h-1 bg-blue-600 mx-auto mt-4 rounded-full"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: 96 }}
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.4 }}
-                    />
-                </motion.div>
+                    >
+                        <Link to="/courses" className="group flex items-center gap-2 text-primary font-bold hover:text-primary-focus transition-colors">
+                            Explore All Courses
+                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                    </motion.div>
+                </div>
 
-                <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+                {/* Grid */}
+                <motion.div 
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" 
+                    variants={containerVariants} 
+                    initial="hidden" 
+                    whileInView="visible" 
+                    viewport={{ once: true }}
+                >
                     {courses.map((course, index) => (
                         <motion.div
                             key={course._id || index}
-                            className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden flex flex-col h-full"
                             variants={cardVariants}
-                            whileHover={{ y: -8, scale: 1.01 }}
-                            transition={{ duration: 0.25 }}
+                            className="group bg-accent dark:bg-gray-800/50 rounded-3xl overflow-hidden border border-gray-100 dark:border-gray-700/50 shadow-sm hover:shadow-xl hover:shadow-primary/5 transition-all duration-500 flex flex-col h-full"
                         >
-                            <div className="relative overflow-hidden h-48 group">
-                                {/* Image or placeholder */}
+                            {/* Card Image */}
+                            <div className="relative aspect-16/10 overflow-hidden">
                                 {!imageErrors[course._id] && course.thumbnail ? (
                                     <img
                                         src={course.thumbnail}
                                         alt={course.title}
                                         onError={() => handleImageError(course._id)}
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 relative z-0"
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
                                 ) : (
-                                    <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-blue-400 to-purple-500">
-                                        <div className="text-center text-white">
-                                            <svg className="w-16 h-16 mx-auto mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth={2}
-                                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                                                />
-                                            </svg>
-                                            <p className="text-sm opacity-75">Course Image</p>
-                                        </div>
+                                    <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-primary/20 to-secondary/20">
+                                        <BookOpen className="w-12 h-12 text-primary/40" />
                                     </div>
                                 )}
-
-                                <div className="absolute inset-0 z-10 pointer-events-none">
-                                    <div className="w-full h-full bg-blue-600 opacity-0 group-hover:opacity-60 transition-opacity duration-300 mix-blend-multiply" />
+                                
+                                {/* Badge */}
+                                <div className="absolute top-4 left-4">
+                                    <span className="px-3 py-1 rounded-lg bg-white/90 dark:bg-gray-900/90 backdrop-blur-md text-xs font-bold text-primary shadow-sm">
+                                        {course.category || "Popular"}
+                                    </span>
                                 </div>
 
-                                {/* Label on top */}
-                                <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
-                                    <span className="text-white font-semibold text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">View Details</span>
+                                {/* Price Overlay */}
+                                <div className="absolute bottom-4 right-4">
+                                    <div className="px-4 py-2 rounded-xl bg-primary text-white font-bold shadow-lg">
+                                        ৳{course.price}
+                                    </div>
                                 </div>
                             </div>
 
+                            {/* Card Content */}
                             <div className="p-6 flex flex-col grow">
-                                <h3 className="text-xl font-semibold mb-2 h-14 line-clamp-2 text-gray-900 dark:text-gray-100">{course.title}</h3>
-                                <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 h-20 line-clamp-3">{course.description}</p>
-
-                                <div className="flex items-center justify-between mb-4">
-                                    <span className="text-sm text-gray-600 dark:text-gray-300">{course.studentsEnrolled?.toLocaleString() || 0} students enrolled</span>
-                                    {course.rating && <span className="text-sm text-yellow-400">⭐ {course.rating}</span>}
+                                <div className="flex items-center gap-4 mb-4">
+                                    <div className="flex items-center gap-1 text-yellow-500">
+                                        <Star className="w-4 h-4 fill-current" />
+                                        <span className="text-sm font-bold">{course.rating || "4.8"}</span>
+                                    </div>
+                                    <div className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+                                    <div className="flex items-center gap-1 text-gray-500 dark:text-gray-400">
+                                        <Users className="w-4 h-4" />
+                                        <span className="text-sm font-medium">{course.studentsEnrolled || 0}</span>
+                                    </div>
                                 </div>
 
-                                {course.instructor && <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">By {course.instructor.name}</p>}
+                                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-primary transition-colors line-clamp-2 min-h-14">
+                                    {course.title}
+                                </h3>
+                                
+                                <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 line-clamp-3 grow">
+                                    {course.description}
+                                </p>
 
-                                <div className="flex items-center justify-between mt-auto pt-3 border-t">
-                                    <div>
-                                        <span className="text-2xl font-bold text-gray-900 dark:text-gray-100">৳{course.price}</span>
-                                        {course.originalPrice > course.price && <span className="ml-2 text-sm text-gray-500 dark:text-gray-400 line-through">৳{course.originalPrice}</span>}
+                                <div className="flex items-center justify-between pt-6 border-t border-gray-100 dark:border-gray-700/50 mt-auto">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-sm">
+                                            {course.instructor?.name?.charAt(0) || "I"}
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <span className="text-[10px] text-gray-400 uppercase font-bold tracking-wider">Instructor</span>
+                                            <span className="text-sm font-bold text-gray-700 dark:text-gray-300 truncate max-w-[120px]">
+                                                {course.instructor?.name || "Expert Instructor"}
+                                            </span>
+                                        </div>
                                     </div>
-                                    <Link to={`/courses/${course._id}`} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm font-semibold">
+                                    <Link to={`/courses/${course._id}`} className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/80 transition text-sm font-semibold">
                                         Details
                                     </Link>
                                 </div>
@@ -148,14 +166,8 @@ const PopularCourse = () => {
                         </motion.div>
                     ))}
                 </motion.div>
-
-                {courses.length === 0 && (
-                    <div className="text-center py-12">
-                        <p className="text-gray-600 dark:text-gray-300">No popular courses found</p>
-                    </div>
-                )}
             </div>
-        </div>
+        </section>
     );
 };
 

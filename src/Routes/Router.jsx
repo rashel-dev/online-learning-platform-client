@@ -28,11 +28,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/courses/:id",
-                element: (
-                    <PrivateRoute>
-                        <CourseDetails></CourseDetails>
-                    </PrivateRoute>
-                ),
+                element: <CourseDetails></CourseDetails>,
             },
             {
                 path: "/login",
