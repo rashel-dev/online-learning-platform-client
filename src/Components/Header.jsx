@@ -51,7 +51,7 @@ const Header = () => {
         <header className="sticky top-0 z-50 bg-neutral dark:bg-gray-900/95 backdrop-blur-md shadow-md border-b border-gray-100 dark:border-gray-800 ">
 
             <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-20">
+                <div className="flex justify-between items-center py-4">
                     {/* Logo Section */}
                     <div onClick={() => navigate("/")} className="flex items-center space-x-2 group cursor-pointer">
                         <Logo></Logo>
