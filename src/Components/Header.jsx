@@ -1,4 +1,4 @@
-import { Menu, X, User, LogIn } from "lucide-react";
+import { Menu, X, User, LogIn, Users, Mail } from "lucide-react";
 import React, { use, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
@@ -37,6 +37,16 @@ const Header = () => {
             <li>
                 <NavLink to="/courses" className="flex items-center gap-1">
                    <FaBook></FaBook> Courses
+                </NavLink>
+            </li>
+            <li>
+                <NavLink to="/about" className="flex items-center gap-1">
+                   <Users className="w-4 h-4"></Users> About Us
+                </NavLink>
+            </li>
+            <li>
+                <NavLink to="/contact" className="flex items-center gap-1">
+                   <Mail className="w-4 h-4"></Mail> Contact
                 </NavLink>
             </li>
             <li>
