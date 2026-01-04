@@ -75,7 +75,7 @@ const Header = () => {
                         <div className="hidden lg:flex items-center space-x-3">
                             <button
                                 onClick={handleLogOut}
-                                className="flex btn btn-outline btn-error items-center space-x-2 px-5 py-2.5 font-bold transition-all duration-300 rounded-lg cursor-pointer"
+                                className="flex btn btn-outline btn-error items-center px-5 py-2.5 font-bold transition-all duration-300 rounded-lg cursor-pointer"
                             >
                                 <CiLogout className="w-4 h-4" />
                                 <span>Logout</span>

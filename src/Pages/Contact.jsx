@@ -1,57 +1,72 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Send, MessageSquare, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Send, MessageSquare, Clock, Globe, HelpCircle } from "lucide-react";
 
 const Contact = () => {
     const contactInfo = [
         {
-            icon: <Mail className="w-6 h-6" />,
+            icon: Mail,
             title: "Email Us",
             value: "support@pathshalabd.com",
             desc: "We'll respond within 24 hours.",
-            color: "bg-blue-500/10 text-blue-600",
+            color: "text-blue-500",
+            bgColor: "bg-blue-500/10",
         },
         {
-            icon: <Phone className="w-6 h-6" />,
+            icon: Phone,
             title: "Call Us",
             value: "+880 1234 567890",
             desc: "Mon-Fri from 9am to 6pm.",
-            color: "bg-primary/10 text-primary",
+            color: "text-primary",
+            bgColor: "bg-primary/10",
         },
         {
-            icon: <MapPin className="w-6 h-6" />,
+            icon: MapPin,
             title: "Visit Us",
             value: "123 Learning Lane, Dhaka",
             desc: "Bangladesh, 1200",
-            color: "bg-secondary/10 text-secondary",
+            color: "text-secondary",
+            bgColor: "bg-secondary/10",
         },
     ];
 
     return (
         <div className="bg-white dark:bg-gray-950 min-h-screen">
             {/* Hero Section */}
-            <section className="py-20 bg-primary/5 dark:bg-gray-900/50 relative overflow-hidden">
-                <div className="absolute inset-0 pointer-events-none opacity-30">
-                    <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+            <section className="relative pt-32 pb-20 overflow-hidden">
+                <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
                 </div>
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                    <motion.h1 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-6"
-                    >
-                        Get in <span className="text-primary">Touch</span>
-                    </motion.h1>
-                    <motion.p 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
-                    >
-                        Have questions? We're here to help. Send us a message and we'll respond as soon as possible.
-                    </motion.p>
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div className="text-center max-w-3xl mx-auto">
+                        <motion.span 
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="inline-block px-4 py-1.5 rounded-full text-xs font-black tracking-widest uppercase bg-primary/10 text-primary mb-6"
+                        >
+                            Contact Us
+                        </motion.span>
+                        <motion.h1 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 }}
+                            className="text-5xl md:text-7xl font-black text-gray-900 dark:text-white mb-8 leading-tight"
+                        >
+                            Let's Start a <br />
+                            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-secondary">Conversation</span>
+                        </motion.h1>
+                        <motion.p 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-xl text-gray-500 dark:text-gray-400 leading-relaxed"
+                        >
+                            Have a question about our courses, pricing, or anything else? 
+                            Our team is here to help you every step of the way.
+                        </motion.p>
+                    </div>
                 </div>
             </section>
 
@@ -67,28 +82,34 @@ const Contact = () => {
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
                                     transition={{ delay: index * 0.1 }}
-                                    className="p-6 rounded-3xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 hover:shadow-xl transition-all duration-300 group"
+                                    className="p-8 rounded-[2.5rem] bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 group"
                                 >
-                                    <div className={`w-12 h-12 rounded-2xl ${info.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                                        {info.icon}
+                                    <div className={`w-14 h-14 rounded-2xl ${info.bgColor} ${info.color} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform`}>
+                                        <info.icon className="w-7 h-7" />
                                     </div>
-                                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{info.title}</h3>
-                                    <p className="text-primary font-semibold mb-2">{info.value}</p>
-                                    <p className="text-sm text-gray-500 dark:text-gray-400">{info.desc}</p>
+                                    <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">{info.title}</h3>
+                                    <p className="text-primary font-bold text-lg mb-2">{info.value}</p>
+                                    <p className="text-gray-500 dark:text-gray-400 leading-relaxed">{info.desc}</p>
                                 </motion.div>
                             ))}
 
                             {/* Additional Help Card */}
-                            <div className="p-8 rounded-3xl bg-primary text-white shadow-xl shadow-primary/20 relative overflow-hidden">
-                                <div className="absolute -right-8 -bottom-8 opacity-10">
+                            <motion.div 
+                                initial={{ opacity: 0, x: -30 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.3 }}
+                                className="p-10 rounded-[2.5rem] bg-linear-to-br from-primary to-secondary text-white shadow-2xl shadow-primary/20 relative overflow-hidden group"
+                            >
+                                <div className="absolute -right-8 -bottom-8 opacity-20 group-hover:scale-110 transition-transform duration-500">
                                     <MessageSquare className="w-32 h-32" />
                                 </div>
-                                <h3 className="text-xl font-bold mb-4 relative z-10">Live Support</h3>
-                                <p className="text-white/80 mb-6 relative z-10">Our support team is available for live chat during business hours.</p>
-                                <button className="px-6 py-3 bg-white text-primary font-bold rounded-xl hover:bg-white/90 transition-colors relative z-10">
-                                    Start Chat
+                                <h3 className="text-2xl font-black mb-4 relative z-10">Live Support</h3>
+                                <p className="text-white/80 text-lg mb-8 relative z-10">Need immediate help? Our support team is ready to chat with you.</p>
+                                <button className="w-full py-4 bg-white text-primary font-black rounded-2xl hover:bg-white/90 transition-all hover:scale-[1.02] active:scale-[0.98] relative z-10">
+                                    Start Live Chat
                                 </button>
-                            </div>
+                            </motion.div>
                         </div>
 
                         {/* Contact Form */}
@@ -97,45 +118,49 @@ const Contact = () => {
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                className="bg-white dark:bg-gray-900 p-8 md:p-12 rounded-[2.5rem] shadow-2xl shadow-gray-200/50 dark:shadow-none border border-gray-100 dark:border-gray-800"
+                                className="bg-white dark:bg-gray-900 p-10 md:p-16 rounded-[3rem] shadow-2xl shadow-gray-200/50 dark:shadow-none border border-gray-100 dark:border-gray-800"
                             >
-                                <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Send us a Message</h2>
-                                <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-                                    <div className="grid md:grid-cols-2 gap-6">
-                                        <div className="space-y-2">
-                                            <label className="text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Full Name</label>
+                                <div className="mb-12">
+                                    <h2 className="text-3xl font-black text-gray-900 dark:text-white mb-4">Send us a Message</h2>
+                                    <p className="text-gray-500 dark:text-gray-400">Fill out the form below and we'll get back to you as soon as possible.</p>
+                                </div>
+
+                                <form className="space-y-8" onSubmit={(e) => e.preventDefault()}>
+                                    <div className="grid md:grid-cols-2 gap-8">
+                                        <div className="space-y-3">
+                                            <label className="text-sm font-black text-gray-700 dark:text-gray-300 uppercase tracking-widest ml-1">Full Name</label>
                                             <input 
                                                 type="text" 
                                                 placeholder="John Doe"
-                                                className="w-full px-6 py-4 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition-all dark:text-white"
+                                                className="w-full px-8 py-5 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white font-medium"
                                             />
                                         </div>
-                                        <div className="space-y-2">
-                                            <label className="text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Email Address</label>
+                                        <div className="space-y-3">
+                                            <label className="text-sm font-black text-gray-700 dark:text-gray-300 uppercase tracking-widest ml-1">Email Address</label>
                                             <input 
                                                 type="email" 
                                                 placeholder="john@example.com"
-                                                className="w-full px-6 py-4 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition-all dark:text-white"
+                                                className="w-full px-8 py-5 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white font-medium"
                                             />
                                         </div>
                                     </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Subject</label>
+                                    <div className="space-y-3">
+                                        <label className="text-sm font-black text-gray-700 dark:text-gray-300 uppercase tracking-widest ml-1">Subject</label>
                                         <input 
                                             type="text" 
-                                            placeholder="How can we help?"
-                                            className="w-full px-6 py-4 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition-all dark:text-white"
+                                            placeholder="How can we help you?"
+                                            className="w-full px-8 py-5 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white font-medium"
                                         />
                                     </div>
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-bold text-gray-700 dark:text-gray-300 ml-1">Message</label>
+                                    <div className="space-y-3">
+                                        <label className="text-sm font-black text-gray-700 dark:text-gray-300 uppercase tracking-widest ml-1">Message</label>
                                         <textarea 
-                                            rows="5"
+                                            rows="6"
                                             placeholder="Tell us more about your inquiry..."
-                                            className="w-full px-6 py-4 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary transition-all dark:text-white resize-none"
+                                            className="w-full px-8 py-5 rounded-2xl bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white font-medium resize-none"
                                         ></textarea>
                                     </div>
-                                    <button className="w-full md:w-auto px-10 py-4 bg-primary hover:bg-primary/90 text-white font-bold rounded-2xl flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/20">
+                                    <button className="w-full md:w-auto px-12 py-5 bg-primary hover:bg-primary/90 text-white font-black rounded-2xl flex items-center justify-center gap-3 transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-primary/20">
                                         Send Message
                                         <Send className="w-5 h-5" />
                                     </button>
@@ -146,17 +171,31 @@ const Contact = () => {
                 </div>
             </section>
 
-            {/* Map Section Placeholder */}
+            {/* Map Section */}
             <section className="py-20 bg-gray-50 dark:bg-gray-900/50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="rounded-[2.5rem] overflow-hidden h-96 bg-gray-200 dark:bg-gray-800 flex items-center justify-center relative group">
-                        <div className="text-center z-10">
-                            <MapPin className="w-12 h-12 text-primary mx-auto mb-4 group-hover:bounce transition-transform" />
-                            <h3 className="text-xl font-bold text-gray-900 dark:text-white">Our Headquarters</h3>
-                            <p className="text-gray-500 dark:text-gray-400">Dhaka, Bangladesh</p>
+                    <div className="relative rounded-[3rem] overflow-hidden h-[500px] bg-gray-200 dark:bg-gray-800 group">
+                        {/* Simulated Map Background */}
+                        <div className="absolute inset-0 bg-[url('https://api.maptiler.com/maps/basic-v2/static/-0.1276,51.5072,12/1000x500.png?key=get_your_own_key')] bg-cover bg-center opacity-50 dark:opacity-30 grayscale group-hover:grayscale-0 transition-all duration-700"></div>
+                        
+                        <div className="absolute inset-0 bg-linear-to-t from-gray-900/80 to-transparent flex items-end p-12">
+                            <div className="bg-white dark:bg-gray-900 p-8 rounded-4xl shadow-2xl max-w-md relative z-10">
+                                <div className="flex items-center gap-4 mb-4">
+                                    <div className="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                                        <MapPin className="w-6 h-6" />
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl font-black text-gray-900 dark:text-white">Our Headquarters</h3>
+                                        <p className="text-gray-500 dark:text-gray-400">Dhaka, Bangladesh</p>
+                                    </div>
+                                </div>
+                                <p className="text-gray-600 dark:text-gray-400 mb-6">123 Learning Lane, Suite 456, Dhaka 1200, Bangladesh</p>
+                                <button className="flex items-center gap-2 text-primary font-black hover:gap-3 transition-all">
+                                    Get Directions
+                                    <Globe className="w-4 h-4" />
+                                </button>
+                            </div>
                         </div>
-                        {/* Overlay to simulate map */}
-                        <div className="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
                     </div>
                 </div>
             </section>
@@ -165,3 +204,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

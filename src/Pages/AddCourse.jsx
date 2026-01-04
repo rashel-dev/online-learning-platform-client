@@ -1,12 +1,27 @@
 import React, { useState, useContext, useEffect } from "react";
-// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
+import { 
+    BookOpen, 
+    Image as ImageIcon, 
+    DollarSign, 
+    Clock, 
+    Tag, 
+    FileText, 
+    Star, 
+    User, 
+    Mail, 
+    Link as LinkIcon,
+    Plus,
+    CheckCircle2,
+    AlertCircle
+} from "lucide-react";
 
 const AddCourse = () => {
-    const { user } = useContext(AuthContext); // 🔹 logged-in user info
+    const { user } = useContext(AuthContext);
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({
         title: "",
         image: "",
@@ -20,12 +35,8 @@ const AddCourse = () => {
         instructorPhoto: "",
     });
 
-    // Auto-fill instructor details from Firebase when user is available
     useEffect(() => {
         document.title = "Add New Course - PathShalaBD";
-    }, []);
-
-    useEffect(() => {
         if (user) {
             setFormData((prev) => ({
                 ...prev,
@@ -46,15 +57,15 @@ const AddCourse = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
-        // Price validation
         if (parseFloat(formData.price) > 99999999) {
-            toast.error("❌ Course price cannot exceed 99,999,999 ৳");
+            toast.error("Course price cannot exceed 99,999,999 ৳");
+            setLoading(false);
             return;
         }
 
         try {
-            // 🧠 Instructor info from form data (auto-filled from Firebase)
             const instructorInfo = {
                 name: formData.instructorName || user?.displayName || "Unknown Instructor",
                 bio: null,
@@ -113,176 +124,213 @@ const AddCourse = () => {
         } catch (error) {
             toast.error("❌ Failed to add course. Please try again.");
             console.error(error);
+        } finally {
+            setLoading(false);
         }
     };
 
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-sky-50 via-white to-sky-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 py-10 px-4">
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="bg-white dark:bg-gray-800 shadow-xl rounded-2xl p-8 w-full max-w-2xl">
-                <h2 className="text-2xl md:text-3xl font-bold text-center text-primary-gradient mb-6">Add New Course</h2>
+    const inputClasses = "w-full pl-12 pr-4 py-3.5 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-600";
+    const labelClasses = "block text-sm font-black text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-2 ml-1";
 
-                <form onSubmit={handleSubmit} className="space-y-5">
-                    {/* Instructor Details Section */}
-                    <div className="bg-linear-to-r from-blue-50 to-indigo-50 p-5 rounded-xl border-2 border-blue-100">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                            <span className="text-blue-600">👤</span> Instructor Details
-                        </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            {/* Instructor Name */}
-                            <div>
-                                <label className="block text-gray-700 font-medium mb-1 text-sm">Instructor Name</label>
+    return (
+        <div className="max-w-4xl mx-auto">
+            <div className="mb-10">
+                <h1 className="text-3xl font-black text-gray-900 dark:text-white mb-2">Create New Course</h1>
+                <p className="text-gray-500 dark:text-gray-400 font-medium">Share your knowledge with the world and inspire others.</p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-8">
+                {/* Instructor Info Card */}
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-white dark:bg-gray-900 rounded-[2.5rem] p-8 border border-gray-100 dark:border-gray-800 shadow-sm"
+                >
+                    <div className="flex items-center gap-4 mb-8">
+                        <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+                            <User className="w-6 h-6" />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">Instructor Information</h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                            <label className={labelClasses}>Name</label>
+                            <div className="relative">
+                                <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                                <input type="text" value={formData.instructorName} readOnly className={inputClasses + " opacity-60 cursor-not-allowed"} />
+                            </div>
+                        </div>
+                        <div className="space-y-2">
+                            <label className={labelClasses}>Email</label>
+                            <div className="relative">
+                                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                                <input type="email" value={formData.instructorEmail} readOnly className={inputClasses + " opacity-60 cursor-not-allowed"} />
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
+
+                {/* Course Details Card */}
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="bg-white dark:bg-gray-900 rounded-[2.5rem] p-8 border border-gray-100 dark:border-gray-800 shadow-sm"
+                >
+                    <div className="flex items-center gap-4 mb-8">
+                        <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
+                            <BookOpen className="w-6 h-6" />
+                        </div>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white">Course Details</h3>
+                    </div>
+
+                    <div className="space-y-6">
+                        <div className="space-y-2">
+                            <label className={labelClasses}>Course Title</label>
+                            <div className="relative group">
+                                <FileText className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-primary transition-colors" />
                                 <input
                                     type="text"
-                                    name="instructorName"
-                                    value={formData.instructorName}
+                                    name="title"
+                                    value={formData.title}
                                     onChange={handleChange}
-                                    placeholder="Your name"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-400 focus:outline-none dark:text-black bg-white"
-                                    readOnly
-                                />
-                            </div>
-
-                            {/* Instructor Email */}
-                            <div>
-                                <label className="block text-gray-700 font-medium mb-1 text-sm">Instructor Email</label>
-                                <input
-                                    type="email"
-                                    name="instructorEmail"
-                                    value={formData.instructorEmail}
-                                    onChange={handleChange}
-                                    placeholder="your@email.com"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-400 focus:outline-none dark:text-black bg-white"
-                                    readOnly
-                                />
-                            </div>
-                            {/* Instructor Photo */}
-                            <div>
-                                <label className="block text-gray-700 font-medium mb-1 text-sm">Instructor Photo URL</label>
-                                <input
-                                    type="url"
-                                    name="instructorPhoto"
-                                    value={formData.instructorPhoto}
-                                    onChange={handleChange}
-                                    placeholder="https://example.com/photo.jpg"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-400 focus:outline-none dark:text-black bg-white"
-                                    readOnly
+                                    placeholder="e.g. Advanced React Mastery"
+                                    className={inputClasses}
+                                    required
                                 />
                             </div>
                         </div>
-                    </div>
-                    {/* Title */}
-                    <div>
-                        <label className="block text-gray-500 font-medium mb-1">Course Title</label>
-                        <input
-                            type="text"
-                            name="title"
-                            value={formData.title}
-                            onChange={handleChange}
-                            placeholder="Enter course title"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-400 focus:outline-none"
-                            required
-                        />
-                    </div>
 
-                    {/* Image */}
-                    <div>
-                        <label className="block text-gray-500 font-medium mb-1">Image URL</label>
-                        <input
-                            type="url"
-                            name="image"
-                            value={formData.image}
-                            onChange={handleChange}
-                            placeholder="https://example.com/image.jpg"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-400 focus:outline-none"
-                            required
-                        />
-                    </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <label className={labelClasses}>Category</label>
+                                <div className="relative group">
+                                    <Tag className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-primary transition-colors" />
+                                    <select
+                                        name="category"
+                                        value={formData.category}
+                                        onChange={handleChange}
+                                        className={inputClasses + " appearance-none"}
+                                        required
+                                    >
+                                        <option value="">Select Category</option>
+                                        <option value="Web Development">Web Development</option>
+                                        <option value="App Development">App Development</option>
+                                        <option value="Data Science">Data Science</option>
+                                        <option value="Design">Design</option>
+                                        <option value="Digital Marketing">Digital Marketing</option>
+                                        <option value="Cyber Security">Cyber Security</option>
+                                        <option value="Machine Learning">Machine Learning</option>
+                                        <option value="Video Editing">Video Editing</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <label className={labelClasses}>Thumbnail URL</label>
+                                <div className="relative group">
+                                    <ImageIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-primary transition-colors" />
+                                    <input
+                                        type="url"
+                                        name="image"
+                                        value={formData.image}
+                                        onChange={handleChange}
+                                        placeholder="https://images.unsplash.com/..."
+                                        className={inputClasses}
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
 
-                    {/* Price & Duration */}
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <label className="block text-gray-500 font-medium mb-1">Price (৳)</label>
-                            <input
-                                type="number"
-                                name="price"
-                                value={formData.price}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <label className={labelClasses}>Price (৳)</label>
+                                <div className="relative group">
+                                    <DollarSign className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-primary transition-colors" />
+                                    <input
+                                        type="number"
+                                        name="price"
+                                        value={formData.price}
+                                        onChange={handleChange}
+                                        placeholder="0.00"
+                                        className={inputClasses}
+                                        required
+                                    />
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <label className={labelClasses}>Duration</label>
+                                <div className="relative group">
+                                    <Clock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 group-focus-within:text-primary transition-colors" />
+                                    <input
+                                        type="text"
+                                        name="duration"
+                                        value={formData.duration}
+                                        onChange={handleChange}
+                                        placeholder="e.g. 12 Weeks"
+                                        className={inputClasses}
+                                        required
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className={labelClasses}>Description</label>
+                            <textarea
+                                name="description"
+                                value={formData.description}
                                 onChange={handleChange}
-                                placeholder="Enter price"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-400 focus:outline-none"
+                                rows="5"
+                                placeholder="What will students learn in this course?"
+                                className="w-full px-6 py-4 rounded-2xl bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all dark:text-white placeholder:text-gray-400 dark:placeholder:text-gray-600 resize-none"
                                 required
                             />
                         </div>
 
-                        <div>
-                            <label className="block text-gray-500 font-medium mb-1">Duration</label>
+                        <div className="flex items-center gap-3 p-4 bg-primary/5 rounded-2xl border border-primary/10">
                             <input
-                                type="text"
-                                name="duration"
-                                value={formData.duration}
+                                type="checkbox"
+                                id="isFeatured"
+                                name="isFeatured"
+                                checked={formData.isFeatured}
                                 onChange={handleChange}
-                                placeholder="e.g. 8 weeks"
-                                className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-400 focus:outline-none"
-                                required
+                                className="w-5 h-5 rounded-lg border-primary text-primary focus:ring-primary cursor-pointer"
                             />
+                            <label htmlFor="isFeatured" className="text-sm font-bold text-gray-700 dark:text-gray-300 cursor-pointer">
+                                Mark as Featured Course
+                            </label>
+                            <Star className={`w-4 h-4 ml-auto ${formData.isFeatured ? "text-yellow-500 fill-yellow-500" : "text-gray-300"}`} />
                         </div>
                     </div>
+                </motion.div>
 
-                    {/* Category */}
-                    <div>
-                        <label className="block text-gray-500 font-medium mb-1">Category</label>
-                        <select
-                            name="category"
-                            value={formData.category}
-                            onChange={handleChange}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-400 focus:outline-none bg-white dark:text-black"
-                            required
-                        >
-                            <option value="">Select a category</option>
-                            <option value="Web Development">Web Development</option>
-                            <option value="App Development">App Development</option>
-                            <option value="Data Science">Data Science</option>
-                            <option value="Design">Design</option>
-                            <option value="Digital Marketing">Digital Marketing</option>
-                            <option value="Cyber Security">Cyber Security</option>
-                            <option value="Machine Learning">Machine Learning</option>
-                            <option value="Video Editing">Video Editing</option>
-                            <option value="Others">Others</option>
-                        </select>
-                    </div>
-
-                    {/* Description */}
-                    <div>
-                        <label className="block text-gray-500 font-medium mb-1">Description</label>
-                        <textarea
-                            name="description"
-                            value={formData.description}
-                            onChange={handleChange}
-                            rows="4"
-                            placeholder="Write a short description..."
-                            className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-sky-400 focus:outline-none"
-                            required
-                        />
-                    </div>
-
-                    {/* Featured */}
-                    <div className="flex items-center gap-2">
-                        <input type="checkbox" name="isFeatured" checked={formData.isFeatured} onChange={handleChange} className="w-5 h-5 text-sky-500" />
-                        <label className="text-gray-500 font-medium">Featured Course</label>
-                    </div>
-
-                    {/* Submit Button */}
-                    <motion.button
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.97 }}
-                        type="submit"
-                        className="w-full bg-linear-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white font-semibold py-3 rounded-xl transition duration-300 shadow-md cursor-pointer"
-                    >
-                        Add Course
-                    </motion.button>
-                </form>
-            </motion.div>
+                {/* Submit Button */}
+                <motion.button
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2 }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    disabled={loading}
+                    type="submit"
+                    className="w-full py-5 bg-primary text-white rounded-4xl font-black text-lg shadow-xl shadow-primary/20 flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed transition-all"
+                >
+                    {loading ? (
+                        <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+                    ) : (
+                        <>
+                            <Plus className="w-6 h-6" />
+                            Publish Course
+                        </>
+                    )}
+                </motion.button>
+            </form>
         </div>
     );
 };
 
 export default AddCourse;
+

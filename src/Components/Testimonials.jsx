@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Quote, Star } from "lucide-react";
+import { Quote, Star, ArrowLeft, ArrowRight } from "lucide-react";
 
 const testimonials = [
     {
@@ -31,82 +31,107 @@ const testimonials = [
 
 const Testimonials = () => {
     return (
-        <section className="py-12 bg-white dark:bg-gray-950 overflow-hidden relative">
+        <section className="py-32 bg-white dark:bg-gray-950 overflow-hidden relative">
             {/* Background Decorations */}
-            <div className="absolute top-0 right-0 w-full h-full pointer-events-none opacity-40">
+            <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-1/4 -right-24 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-1/4 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="text-center max-w-3xl mx-auto mb-10">
-                    <motion.span 
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="inline-block px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase bg-secondary/10 text-secondary mb-4"
-                    >
-                        Success Stories
-                    </motion.span>
-                    <motion.h2 
-                        initial={{ opacity: 0, y: 20 }} 
-                        whileInView={{ opacity: 1, y: 0 }} 
-                        viewport={{ once: true }}
-                        className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 dark:text-white mb-6"
-                    >
-                        What Our <span className="text-secondary">Students</span> Say
-                    </motion.h2>
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+                    <div className="max-w-2xl">
+                        <motion.span 
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="inline-block px-4 py-1.5 rounded-full text-xs font-black tracking-widest uppercase bg-secondary/10 text-secondary mb-6"
+                        >
+                            Success Stories
+                        </motion.span>
+                        <motion.h2 
+                            initial={{ opacity: 0, y: 20 }} 
+                            whileInView={{ opacity: 1, y: 0 }} 
+                            viewport={{ once: true }}
+                            className="text-4xl md:text-6xl font-black text-gray-900 dark:text-white leading-tight"
+                        >
+                            What Our <span className="text-transparent bg-clip-text bg-linear-to-r from-secondary to-primary">Students</span> Say
+                        </motion.h2>
+                    </div>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-gray-600 dark:text-gray-400 text-lg"
+                        className="text-xl text-gray-500 dark:text-gray-400 max-w-sm font-medium"
                     >
                         Join thousands of satisfied learners who have transformed their careers with PathshalaBD.
                     </motion.p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {testimonials.map((testimonial, index) => (
                         <motion.div
                             key={testimonial.id}
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="group bg-gray-50 dark:bg-gray-900/50 p-8 rounded-4xl border border-gray-100 dark:border-gray-800 relative hover:shadow-2xl hover:shadow-secondary/5 transition-all duration-300 hover:-translate-y-2"
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            className="group relative h-full"
                         >
-                            <Quote className="absolute top-6 right-8 w-12 h-12 text-primary/10 group-hover:text-primary/20 transition-colors" />
-                            <div className="flex gap-1 mb-6">
-                                {[...Array(5)].map((_, i) => (
-                                    <Star 
-                                        key={i} 
-                                        className={`w-4 h-4 ${i < testimonial.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300"}`} 
-                                    />
-                                ))}
-                            </div>
-                            <p className="text-gray-600 dark:text-gray-400 mb-8 italic leading-relaxed relative z-10">
-                                "{testimonial.content}"
-                            </p>
-                            <div className="flex items-center gap-4">
-                                <div className="relative">
-                                    <img 
-                                        src={testimonial.avatar} 
-                                        alt={testimonial.name} 
-                                        className="w-14 h-14 rounded-2xl object-cover border-2 border-white dark:border-gray-800 shadow-md"
-                                    />
-                                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-secondary rounded-full border-2 border-white dark:border-gray-900 flex items-center justify-center">
-                                        <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
-                                    </div>
+                            <div className="h-full bg-gray-50 dark:bg-gray-900 p-10 rounded-[3rem] border border-gray-100 dark:border-gray-800 transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-secondary/5 group-hover:-translate-y-2 flex flex-col">
+                                <div className="absolute top-10 right-10 opacity-10 group-hover:opacity-20 transition-opacity duration-500">
+                                    <Quote className="w-16 h-16 text-secondary" />
                                 </div>
-                                <div>
-                                    <h4 className="font-bold text-gray-900 dark:text-white group-hover:text-secondary transition-colors">{testimonial.name}</h4>
-                                    <p className="text-sm text-gray-500 dark:text-gray-500 font-medium">{testimonial.role}</p>
+                                
+                                <div className="flex gap-1 mb-8">
+                                    {[...Array(5)].map((_, i) => (
+                                        <Star 
+                                            key={i} 
+                                            className={`w-5 h-5 ${i < testimonial.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-300 dark:text-gray-700"}`} 
+                                        />
+                                    ))}
+                                </div>
+
+                                <p className="text-xl text-gray-600 dark:text-gray-400 mb-10 font-medium leading-relaxed italic relative z-10">
+                                    "{testimonial.content}"
+                                </p>
+
+                                <div className="mt-auto flex items-center gap-5">
+                                    <div className="relative">
+                                        <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-white dark:border-gray-800 shadow-xl group-hover:scale-110 transition-transform duration-500">
+                                            <img 
+                                                src={testimonial.avatar} 
+                                                alt={testimonial.name} 
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                        <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-secondary rounded-full border-4 border-gray-50 dark:border-gray-900 flex items-center justify-center">
+                                            <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 className="text-lg font-black text-gray-900 dark:text-white group-hover:text-secondary transition-colors">
+                                            {testimonial.name}
+                                        </h4>
+                                        <p className="text-sm text-gray-500 dark:text-gray-500 font-bold uppercase tracking-widest">
+                                            {testimonial.role}
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
                     ))}
+                </div>
+
+                {/* Navigation Buttons Placeholder */}
+                <div className="mt-16 flex justify-center gap-4">
+                    <button className="w-14 h-14 rounded-2xl bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm">
+                        <ArrowLeft className="w-6 h-6" />
+                    </button>
+                    <button className="w-14 h-14 rounded-2xl bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 flex items-center justify-center text-gray-400 hover:bg-primary hover:text-white hover:border-primary transition-all shadow-sm">
+                        <ArrowRight className="w-6 h-6" />
+                    </button>
                 </div>
             </div>
         </section>
@@ -114,3 +139,4 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
+
