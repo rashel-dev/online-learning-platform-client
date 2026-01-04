@@ -4,7 +4,7 @@ import { Send, Sparkles, Bell, ShieldCheck } from "lucide-react";
 
 const Newsletter = () => {
     return (
-        <section className="py-32 bg-white dark:bg-gray-950 relative overflow-hidden">
+        <section className="py-20 bg-white dark:bg-gray-950 relative overflow-hidden">
             {/* Decorative Elements */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>

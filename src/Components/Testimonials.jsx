@@ -31,7 +31,7 @@ const testimonials = [
 
 const Testimonials = () => {
     return (
-        <section className="py-32 bg-white dark:bg-gray-950 overflow-hidden relative">
+        <section className="py-20 bg-white dark:bg-gray-950 overflow-hidden relative">
             {/* Background Decorations */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-1/4 -right-24 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>

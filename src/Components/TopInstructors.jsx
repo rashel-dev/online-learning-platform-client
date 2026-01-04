@@ -23,7 +23,7 @@ const TopInstructors = () => {
 
     if (loading) {
         return (
-            <div className="py-32 flex justify-center items-center bg-white dark:bg-gray-950">
+            <div className="py-20 flex justify-center items-center bg-white dark:bg-gray-950">
                 <Spinner />
             </div>
         );
@@ -45,7 +45,7 @@ const TopInstructors = () => {
     };
 
     return (
-        <section className="py-32 bg-gray-50 dark:bg-gray-900/50 relative overflow-hidden">
+        <section className="py-20 bg-gray-50 dark:bg-gray-900/50 relative overflow-hidden">
             {/* Background Decorations */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
