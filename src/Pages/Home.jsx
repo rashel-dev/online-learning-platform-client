@@ -4,6 +4,10 @@ import Banner from "../Components/Banner";
 import WhyChooseUs from "../Components/WhyChooseUs";
 import TopInstructors from "../Components/TopInstructors";
 import ThemeToggle from "../Components/ThemeToggle";
+import Stats from "../Components/Stats";
+import Testimonials from "../Components/Testimonials";
+import Newsletter from "../Components/Newsletter";
+import FAQ from "../Components/FAQ";
 
 const Home = () => {
     useEffect(() => {
@@ -16,9 +20,13 @@ const Home = () => {
                 <ThemeToggle />
             </div>
             <Banner />
+            <Stats />
             <PopularCourse />
             <WhyChooseUs />
+            <Testimonials />
             <TopInstructors />
+            <FAQ />
+            <Newsletter />
         </div>
     );
 };

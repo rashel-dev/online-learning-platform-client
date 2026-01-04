@@ -35,7 +35,7 @@ const features = [
 
 const WhyChooseUs = () => {
     return (
-        <section className="py-24 bg-white dark:bg-gray-950 overflow-hidden relative">
+        <section className="py-12 bg-white dark:bg-gray-950 overflow-hidden relative">
             {/* Background Decorations */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-40">
                 <div className="absolute top-10 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
@@ -43,7 +43,7 @@ const WhyChooseUs = () => {
             </div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div className="text-center max-w-3xl mx-auto mb-16">
+                <div className="text-center max-w-3xl mx-auto mb-10">
                     <motion.span 
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
